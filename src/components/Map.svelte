@@ -17,9 +17,10 @@
     if (map) {
       const userLngLat = [detail.coords.longitude, detail.coords.latitude];
       console.log('move map', map, e, detail, userLngLat);
-      map.jumpTo({
+      map.flyTo({
         center: userLngLat,
-        zoom: 12
+        bearing: 0,
+        zoom: 10
       });
       new Marker({color: "#00FF00"})
       .setLngLat(userLngLat)
@@ -33,9 +34,12 @@
     // console.log('detail', detail);
     
     const apiKey = 'GlJWKS3DFD5ab4vrTpZJ';
-    const alta = ['-111.644791', '40.588509'];
+    const resorts = {
+      alta: ['-111.644791', '40.588509'],
+      brighton: ['-111.5821', '40.6038'],
+    };
     // const longLat = [detail.coords.longitude, detail.coords.latitude];
-    const initialState = { lng: alta[0], lat: alta[1], zoom: 15 };
+    const initialState = { lng: resorts.brighton[0], lat: resorts.brighton[1], zoom: 14 };
 
     // map.center = [detail.coords.longitude, detail.coords.latitude];
 
@@ -44,17 +48,32 @@
       style: `https://api.maptiler.com/maps/outdoor/style.json?key=${apiKey}`,
       center: [initialState.lng, initialState.lat],
       zoom: initialState.zoom,
-      pitch: 52,
-      hash: true,
-      maxZoom: 18,
-      maxPitch: 85
+      pitch: 61,
+      maxPitch: 85,
+      maxZoom: 14
     });
+
+    for (const [key, value] of Object.entries(resorts)) {
+      new Marker({color: "#FF00DD"})
+      .setLngLat(value)
+      .addTo(map);
+    }
+
+
+    map.on('load', function() {
+      map.addSource("terrain", {
+        "type": "raster-dem",
+        "url": `https://api.maptiler.com/tiles/terrain-rgb/tiles.json?key=${apiKey}`
+      });
+      map.setTerrain({
+        source: "terrain"
+      });
+    });
+
 
     map.addControl(new NavigationControl(), 'top-right');
 
-    new Marker({color: "#FF00DD"})
-      .setLngLat(alta)
-      .addTo(map);
+  
 
     // map.on('load', function () {
       
