@@ -2,9 +2,10 @@
 
 ---
 
-# svelte app
+# SkiTracks
 
-This is a project template for [SkiTracks](https://) apps. It lives at https://github.com/ryanmparrish/skitracks.
+This is a project template for [SkiTracks](https://) apps. 
+It lives at https://github.com/ryanmparrish/skitracks.
 
 
 ## Get started
