@@ -5,19 +5,39 @@
 
   let map;
   let mapContainer;
+  let popup;
 
   import Geolocation from "svelte-geolocation";
 
+  let geolocation;
   let getPositionAgain = false;
   let detail = {};
 
+  function moveToPosition(e, detail) {
+    if (map) {
+      const userLngLat = [detail.coords.longitude, detail.coords.latitude];
+      console.log('move map', map, e, detail, userLngLat);
+      map.jumpTo({
+        center: userLngLat,
+        zoom: 17
+      });
+      new Marker({color: "#00FF00"})
+      .setLngLat(userLngLat)
+      .addTo(map);
+    }
+  }
+
+  onMount(() => { 
 
 
-  onMount(() => {
+    // console.log('detail', detail);
     
     const apiKey = 'GlJWKS3DFD5ab4vrTpZJ';
     const alta = ['-111.644791', '40.588509'];
+    // const longLat = [detail.coords.longitude, detail.coords.latitude];
     const initialState = { lng: alta[0], lat: alta[1], zoom: 15 };
+
+    // map.center = [detail.coords.longitude, detail.coords.latitude];
 
     map = new Map({
       container: mapContainer,
@@ -26,71 +46,15 @@
       zoom: initialState.zoom,
       pitch: 52,
       hash: true,
-      // style: {
-      //   key: apiKey,
-      //   version: 8,
-      //   sources: {
-      //     osm: {
-      //       type: 'raster',
-      //       tiles: ['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],
-      //       tileSize: 256,
-      //       attribution: '&copy; OpenStreetMap Contributors',
-      //       maxzoom: 19
-      //     } ,
-      //     terrainSource: {
-      //       type: 'raster-dem',
-      //       url: 'https://demotiles.maplibre.org/terrain-tiles/tiles.json',
-      //       tileSize: 256
-      //     },
-      //     hillshadeSource: {
-      //       type: 'raster-dem',
-      //       url: 'https://demotiles.maplibre.org/terrain-tiles/tiles.json',
-      //       tileSize: 256
-      //     }
-      //   },
-      //   layers: [
-      //     {
-      //       id: 'osm',
-      //       type: 'raster',
-      //       source: 'osm'
-      //     },
-      //     {
-      //       id: 'hills',
-      //       type: 'hillshade',
-      //       source: 'hillshadeSource',
-      //       layout: { visibility: 'visible' },
-      //       paint: { 'hillshade-shadow-color': '#473B24' }
-      //     }
-      //   ],
-      //   terrain: {
-      //     source: 'terrainSource',
-      //     exaggeration: 1
-      //   } 
-      // },
       maxZoom: 18,
       maxPitch: 85
-      
     });
 
     map.addControl(new NavigationControl(), 'top-right');
-    
-    // map.addControl(
-    //   new maplibregl.NavigationControl({
-    //     visualizePitch: true,
-    //     showZoom: true,
-    //     showCompass: true
-    //   })
-    // );
-    // map.addControl(
-    //   new maplibregl.TerrainControl({
-    //     source: 'terrainSource',
-    //     exaggeration: 1
-    //   })
-    // );
 
-    // new Marker({color: "#FF0000"})
-    //   .setLngLat([40.7111,-41])
-    //   .addTo(map);
+    new Marker({color: "#FF0000"})
+      .setLngLat(alta)
+      .addTo(map);
 
     // map.on('load', function () {
       
@@ -104,6 +68,10 @@
     //   })
   
     // }, 2000);
+    
+    console.log('geolocation', geolocation.getGeolocationPosition({ enableHighAccuracy: true }));
+    console.log('detail', detail);
+
 
   });
 
@@ -155,8 +123,12 @@
 
 
 <div class="loc-ui">
+  
   <button on:click="{() => (getPositionAgain = !getPositionAgain)}">
     Get Position
+  </button>
+  <button on:click="{moveToPosition}">
+    Go to Position
   </button>
   <pre>{JSON.stringify(detail, null, 2)}</pre>
 </div>
@@ -164,11 +136,10 @@
 <Geolocation
   getPosition="{getPositionAgain}"
   watch="{true}"
+  bind:this="{geolocation}"
   on:position="{(e) => {
     detail = e.detail;
-    const longLat = [detail.coords.longitude, detail.coords.latitude];
-    console.log('longLat', longLat);
-
+    moveToPosition(e, e.detail);
   }}"
 />
 <div class="map-wrap">

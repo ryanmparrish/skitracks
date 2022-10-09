@@ -1136,116 +1136,132 @@ var app = (function () {
 
     function create_fragment$2(ctx) {
     	let div0;
-    	let button;
+    	let button0;
     	let t1;
-    	let pre;
-    	let t2_value = JSON.stringify(/*detail*/ ctx[2], null, 2) + "";
-    	let t2;
+    	let button1;
     	let t3;
-    	let geolocation;
+    	let pre;
+    	let t4_value = JSON.stringify(/*detail*/ ctx[3], null, 2) + "";
     	let t4;
+    	let t5;
+    	let geolocation_1;
+    	let t6;
     	let div2;
     	let a;
     	let img;
     	let img_src_value;
-    	let t5;
+    	let t7;
     	let div1;
     	let current;
     	let mounted;
     	let dispose;
 
-    	geolocation = new Geolocation$1({
-    			props: {
-    				getPosition: /*getPositionAgain*/ ctx[1],
-    				watch: true
-    			},
+    	let geolocation_1_props = {
+    		getPosition: /*getPositionAgain*/ ctx[2],
+    		watch: true
+    	};
+
+    	geolocation_1 = new Geolocation$1({
+    			props: geolocation_1_props,
     			$$inline: true
     		});
 
-    	geolocation.$on("position", /*position_handler*/ ctx[4]);
+    	/*geolocation_1_binding*/ ctx[6](geolocation_1);
+    	geolocation_1.$on("position", /*position_handler*/ ctx[7]);
 
     	const block = {
     		c: function create() {
     			div0 = element("div");
-    			button = element("button");
-    			button.textContent = "Get Position";
+    			button0 = element("button");
+    			button0.textContent = "Get Position";
     			t1 = space();
-    			pre = element("pre");
-    			t2 = text(t2_value);
+    			button1 = element("button");
+    			button1.textContent = "Go to Position";
     			t3 = space();
-    			create_component(geolocation.$$.fragment);
-    			t4 = space();
+    			pre = element("pre");
+    			t4 = text(t4_value);
+    			t5 = space();
+    			create_component(geolocation_1.$$.fragment);
+    			t6 = space();
     			div2 = element("div");
     			a = element("a");
     			img = element("img");
-    			t5 = space();
+    			t7 = space();
     			div1 = element("div");
-    			add_location(button, file$2, 157, 2, 3642);
+    			add_location(button0, file$2, 126, 2, 2744);
+    			add_location(button1, file$2, 129, 2, 2842);
     			attr_dev(pre, "class", "svelte-1drk1xv");
-    			add_location(pre, file$2, 160, 2, 3740);
+    			add_location(pre, file$2, 132, 2, 2912);
     			attr_dev(div0, "class", "loc-ui svelte-1drk1xv");
-    			add_location(div0, file$2, 156, 0, 3619);
+    			add_location(div0, file$2, 124, 0, 2718);
     			if (!src_url_equal(img.src, img_src_value = "https://api.maptiler.com/resources/logo.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "MapTiler logo");
-    			add_location(img, file$2, 174, 55, 4102);
+    			add_location(img, file$2, 145, 55, 3226);
     			attr_dev(a, "href", "https://www.maptiler.com");
     			attr_dev(a, "class", "watermark svelte-1drk1xv");
-    			add_location(a, file$2, 174, 2, 4049);
+    			add_location(a, file$2, 145, 2, 3173);
     			attr_dev(div1, "class", "map svelte-1drk1xv");
     			attr_dev(div1, "id", "map");
-    			add_location(div1, file$2, 176, 2, 4189);
+    			add_location(div1, file$2, 147, 2, 3313);
     			attr_dev(div2, "class", "map-wrap svelte-1drk1xv");
-    			add_location(div2, file$2, 173, 0, 4024);
+    			add_location(div2, file$2, 144, 0, 3148);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
-    			append_dev(div0, button);
+    			append_dev(div0, button0);
     			append_dev(div0, t1);
+    			append_dev(div0, button1);
+    			append_dev(div0, t3);
     			append_dev(div0, pre);
-    			append_dev(pre, t2);
-    			insert_dev(target, t3, anchor);
-    			mount_component(geolocation, target, anchor);
-    			insert_dev(target, t4, anchor);
+    			append_dev(pre, t4);
+    			insert_dev(target, t5, anchor);
+    			mount_component(geolocation_1, target, anchor);
+    			insert_dev(target, t6, anchor);
     			insert_dev(target, div2, anchor);
     			append_dev(div2, a);
     			append_dev(a, img);
-    			append_dev(div2, t5);
+    			append_dev(div2, t7);
     			append_dev(div2, div1);
-    			/*div1_binding*/ ctx[5](div1);
+    			/*div1_binding*/ ctx[8](div1);
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*click_handler*/ ctx[3], false, false, false);
+    				dispose = [
+    					listen_dev(button0, "click", /*click_handler*/ ctx[5], false, false, false),
+    					listen_dev(button1, "click", /*moveToPosition*/ ctx[4], false, false, false)
+    				];
+
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if ((!current || dirty & /*detail*/ 4) && t2_value !== (t2_value = JSON.stringify(/*detail*/ ctx[2], null, 2) + "")) set_data_dev(t2, t2_value);
-    			const geolocation_changes = {};
-    			if (dirty & /*getPositionAgain*/ 2) geolocation_changes.getPosition = /*getPositionAgain*/ ctx[1];
-    			geolocation.$set(geolocation_changes);
+    			if ((!current || dirty & /*detail*/ 8) && t4_value !== (t4_value = JSON.stringify(/*detail*/ ctx[3], null, 2) + "")) set_data_dev(t4, t4_value);
+    			const geolocation_1_changes = {};
+    			if (dirty & /*getPositionAgain*/ 4) geolocation_1_changes.getPosition = /*getPositionAgain*/ ctx[2];
+    			geolocation_1.$set(geolocation_1_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(geolocation.$$.fragment, local);
+    			transition_in(geolocation_1.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(geolocation.$$.fragment, local);
+    			transition_out(geolocation_1.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div0);
-    			if (detaching) detach_dev(t3);
-    			destroy_component(geolocation, detaching);
-    			if (detaching) detach_dev(t4);
+    			if (detaching) detach_dev(t5);
+    			/*geolocation_1_binding*/ ctx[6](null);
+    			destroy_component(geolocation_1, detaching);
+    			if (detaching) detach_dev(t6);
     			if (detaching) detach_dev(div2);
-    			/*div1_binding*/ ctx[5](null);
+    			/*div1_binding*/ ctx[8](null);
     			mounted = false;
-    			dispose();
+    			run_all(dispose);
     		}
     	};
 
@@ -1265,14 +1281,30 @@ var app = (function () {
     	validate_slots('Map', slots, []);
     	let map;
     	let mapContainer;
+    	let popup;
+    	let geolocation;
     	let getPositionAgain = false;
     	let detail = {};
 
+    	function moveToPosition(e, detail) {
+    		if (map) {
+    			const userLngLat = [detail.coords.longitude, detail.coords.latitude];
+    			console.log('move map', map, e, detail, userLngLat);
+    			map.jumpTo({ center: userLngLat, zoom: 17 });
+    			new maplibreGl.Marker({ color: "#00FF00" }).setLngLat(userLngLat).addTo(map);
+    		}
+    	}
+
     	onMount(() => {
+    		// console.log('detail', detail);
     		const apiKey = 'GlJWKS3DFD5ab4vrTpZJ';
+
     		const alta = ['-111.644791', '40.588509'];
+
+    		// const longLat = [detail.coords.longitude, detail.coords.latitude];
     		const initialState = { lng: alta[0], lat: alta[1], zoom: 15 };
 
+    		// map.center = [detail.coords.longitude, detail.coords.latitude];
     		map = new maplibreGl.Map({
     				container: mapContainer,
     				style: `https://api.maptiler.com/maps/hybrid/style.json?key=${apiKey}`,
@@ -1280,79 +1312,28 @@ var app = (function () {
     				zoom: initialState.zoom,
     				pitch: 52,
     				hash: true,
-    				// style: {
-    				//   key: apiKey,
-    				//   version: 8,
-    				//   sources: {
-    				//     osm: {
-    				//       type: 'raster',
-    				//       tiles: ['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],
-    				//       tileSize: 256,
-    				//       attribution: '&copy; OpenStreetMap Contributors',
-    				//       maxzoom: 19
-    				//     } ,
-    				//     terrainSource: {
-    				//       type: 'raster-dem',
-    				//       url: 'https://demotiles.maplibre.org/terrain-tiles/tiles.json',
-    				//       tileSize: 256
-    				//     },
-    				//     hillshadeSource: {
-    				//       type: 'raster-dem',
-    				//       url: 'https://demotiles.maplibre.org/terrain-tiles/tiles.json',
-    				//       tileSize: 256
-    				//     }
-    				//   },
-    				//   layers: [
-    				//     {
-    				//       id: 'osm',
-    				//       type: 'raster',
-    				//       source: 'osm'
-    				//     },
-    				//     {
-    				//       id: 'hills',
-    				//       type: 'hillshade',
-    				//       source: 'hillshadeSource',
-    				//       layout: { visibility: 'visible' },
-    				//       paint: { 'hillshade-shadow-color': '#473B24' }
-    				//     }
-    				//   ],
-    				//   terrain: {
-    				//     source: 'terrainSource',
-    				//     exaggeration: 1
-    				//   } 
-    				// },
     				maxZoom: 18,
     				maxPitch: 85
     			});
 
     		map.addControl(new maplibreGl.NavigationControl(), 'top-right');
-    	}); // map.addControl(
-    	//   new maplibregl.NavigationControl({
-    	//     visualizePitch: true,
-    	//     showZoom: true,
+    		new maplibreGl.Marker({ color: "#FF0000" }).setLngLat(alta).addTo(map);
 
-    	//     showCompass: true
-    	//   })
-    	// );
-    	// map.addControl(
-    	//   new maplibregl.TerrainControl({
-    	//     source: 'terrainSource',
-    	//     exaggeration: 1
-    	//   })
-    	// );
-    	// new Marker({color: "#FF0000"})
-    	//   .setLngLat([40.7111,-41])
-    	//   .addTo(map);
-    	// map.on('load', function () {
-    	//   geoloc = new Geolocation({ 
-    	//   getPosition: getPositionAgain,
-    	//   watch: true,
-    	//   on:position( (e) => {
-    	//     detail = e.detail;
-    	//     const longLat = [detail.coords.longitude, detail.coords.latitude];
-    	//     console.log('longLat', longLat);
-    	//   })
-    	// }, 2000);
+    		// map.on('load', function () {
+    		//   geoloc = new Geolocation({ 
+    		//   getPosition: getPositionAgain,
+    		//   watch: true,
+    		//   on:position( (e) => {
+    		//     detail = e.detail;
+    		//     const longLat = [detail.coords.longitude, detail.coords.latitude];
+    		//     console.log('longLat', longLat);
+    		//   })
+    		// }, 2000);
+    		console.log('geolocation', geolocation.getGeolocationPosition({ enableHighAccuracy: true }));
+
+    		console.log('detail', detail);
+    	});
+
     	onDestroy(() => {
     		map.remove();
     	});
@@ -1363,12 +1344,18 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<Map> was created with unknown prop '${key}'`);
     	});
 
-    	const click_handler = () => $$invalidate(1, getPositionAgain = !getPositionAgain);
+    	const click_handler = () => $$invalidate(2, getPositionAgain = !getPositionAgain);
+
+    	function geolocation_1_binding($$value) {
+    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+    			geolocation = $$value;
+    			$$invalidate(1, geolocation);
+    		});
+    	}
 
     	const position_handler = e => {
-    		$$invalidate(2, detail = e.detail);
-    		const longLat = [detail.coords.longitude, detail.coords.latitude];
-    		console.log('longLat', longLat);
+    		$$invalidate(3, detail = e.detail);
+    		moveToPosition(e, e.detail);
     	};
 
     	function div1_binding($$value) {
@@ -1386,16 +1373,21 @@ var app = (function () {
     		Marker: maplibreGl.Marker,
     		map,
     		mapContainer,
+    		popup,
     		Geolocation: Geolocation$1,
+    		geolocation,
     		getPositionAgain,
-    		detail
+    		detail,
+    		moveToPosition
     	});
 
     	$$self.$inject_state = $$props => {
     		if ('map' in $$props) map = $$props.map;
     		if ('mapContainer' in $$props) $$invalidate(0, mapContainer = $$props.mapContainer);
-    		if ('getPositionAgain' in $$props) $$invalidate(1, getPositionAgain = $$props.getPositionAgain);
-    		if ('detail' in $$props) $$invalidate(2, detail = $$props.detail);
+    		if ('popup' in $$props) popup = $$props.popup;
+    		if ('geolocation' in $$props) $$invalidate(1, geolocation = $$props.geolocation);
+    		if ('getPositionAgain' in $$props) $$invalidate(2, getPositionAgain = $$props.getPositionAgain);
+    		if ('detail' in $$props) $$invalidate(3, detail = $$props.detail);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -1404,9 +1396,12 @@ var app = (function () {
 
     	return [
     		mapContainer,
+    		geolocation,
     		getPositionAgain,
     		detail,
+    		moveToPosition,
     		click_handler,
+    		geolocation_1_binding,
     		position_handler,
     		div1_binding
     	];

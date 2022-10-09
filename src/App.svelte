@@ -6,7 +6,6 @@ import Navbar from './components/Navbar.svelte';
 
 <div class="app">
 	<Navbar />
-	<!-- <GeoLocaion /> -->
 	<Map />
 </div>
 
