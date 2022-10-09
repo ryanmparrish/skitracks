@@ -1188,23 +1188,23 @@ var app = (function () {
     			img = element("img");
     			t7 = space();
     			div1 = element("div");
-    			add_location(button0, file$2, 126, 2, 2744);
-    			add_location(button1, file$2, 129, 2, 2842);
+    			add_location(button0, file$2, 126, 2, 2745);
+    			add_location(button1, file$2, 129, 2, 2843);
     			attr_dev(pre, "class", "svelte-1drk1xv");
-    			add_location(pre, file$2, 132, 2, 2912);
+    			add_location(pre, file$2, 132, 2, 2913);
     			attr_dev(div0, "class", "loc-ui svelte-1drk1xv");
-    			add_location(div0, file$2, 124, 0, 2718);
+    			add_location(div0, file$2, 124, 0, 2719);
     			if (!src_url_equal(img.src, img_src_value = "https://api.maptiler.com/resources/logo.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "MapTiler logo");
-    			add_location(img, file$2, 145, 55, 3226);
+    			add_location(img, file$2, 145, 55, 3227);
     			attr_dev(a, "href", "https://www.maptiler.com");
     			attr_dev(a, "class", "watermark svelte-1drk1xv");
-    			add_location(a, file$2, 145, 2, 3173);
+    			add_location(a, file$2, 145, 2, 3174);
     			attr_dev(div1, "class", "map svelte-1drk1xv");
     			attr_dev(div1, "id", "map");
-    			add_location(div1, file$2, 147, 2, 3313);
+    			add_location(div1, file$2, 147, 2, 3314);
     			attr_dev(div2, "class", "map-wrap svelte-1drk1xv");
-    			add_location(div2, file$2, 144, 0, 3148);
+    			add_location(div2, file$2, 144, 0, 3149);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1290,7 +1290,7 @@ var app = (function () {
     		if (map) {
     			const userLngLat = [detail.coords.longitude, detail.coords.latitude];
     			console.log('move map', map, e, detail, userLngLat);
-    			map.jumpTo({ center: userLngLat, zoom: 17 });
+    			map.jumpTo({ center: userLngLat, zoom: 12 });
     			new maplibreGl.Marker({ color: "#00FF00" }).setLngLat(userLngLat).addTo(map);
     		}
     	}
@@ -1307,7 +1307,7 @@ var app = (function () {
     		// map.center = [detail.coords.longitude, detail.coords.latitude];
     		map = new maplibreGl.Map({
     				container: mapContainer,
-    				style: `https://api.maptiler.com/maps/hybrid/style.json?key=${apiKey}`,
+    				style: `https://api.maptiler.com/maps/outdoor/style.json?key=${apiKey}`,
     				center: [initialState.lng, initialState.lat],
     				zoom: initialState.zoom,
     				pitch: 52,
@@ -1317,7 +1317,7 @@ var app = (function () {
     			});
 
     		map.addControl(new maplibreGl.NavigationControl(), 'top-right');
-    		new maplibreGl.Marker({ color: "#FF0000" }).setLngLat(alta).addTo(map);
+    		new maplibreGl.Marker({ color: "#FF00DD" }).setLngLat(alta).addTo(map);
 
     		// map.on('load', function () {
     		//   geoloc = new Geolocation({ 

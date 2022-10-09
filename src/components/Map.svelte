@@ -19,7 +19,7 @@
       console.log('move map', map, e, detail, userLngLat);
       map.jumpTo({
         center: userLngLat,
-        zoom: 17
+        zoom: 12
       });
       new Marker({color: "#00FF00"})
       .setLngLat(userLngLat)
@@ -41,7 +41,7 @@
 
     map = new Map({
       container: mapContainer,
-      style: `https://api.maptiler.com/maps/hybrid/style.json?key=${apiKey}`,
+      style: `https://api.maptiler.com/maps/outdoor/style.json?key=${apiKey}`,
       center: [initialState.lng, initialState.lat],
       zoom: initialState.zoom,
       pitch: 52,
@@ -52,7 +52,7 @@
 
     map.addControl(new NavigationControl(), 'top-right');
 
-    new Marker({color: "#FF0000"})
+    new Marker({color: "#FF00DD"})
       .setLngLat(alta)
       .addTo(map);
 
